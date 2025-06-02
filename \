@@ -52,14 +52,17 @@ class LinkedList:
             this_node = this_node.get_next()
         return str(list)
     def reverse(self):
-        prev = None
-        current = self.root
-        while (current is not None):
-            next = current.get_next()
-            current.set_next(prev)
-            prev = current
-            current = next
-        self.root = prev
+        if self.size <= 1:
+            return
+        head = self.root
+        while head:
+            next = head.get_next()
+            if next:
+                head.set_next(next.get_next())
+                next.set_next(head)
+                head = next
+            else:
+                return
 ls = LinkedList()
 
 for i in range(10):
